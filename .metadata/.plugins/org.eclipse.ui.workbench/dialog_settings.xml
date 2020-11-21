@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<section name="ImportExportAction">
+	</section>
 	<section name="org.eclipse.ui.internal.QuickAccess">
 		<item key="dialogHeight" value="-1"/>
 		<item key="dialogWidth" value="-1"/>
@@ -11,7 +13,5 @@
 		</list>
 		<list key="textArray">
 		</list>
-	</section>
-	<section name="NewWizardAction">
 	</section>
 </section>
