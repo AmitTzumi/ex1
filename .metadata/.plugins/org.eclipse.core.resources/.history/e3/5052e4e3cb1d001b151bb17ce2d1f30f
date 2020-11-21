@@ -1,0 +1,99 @@
+package Ex0;
+
+import java.util.Collection;
+import java.util.HashMap;
+
+public class Graph_DS implements graph {
+	private HashMap<Integer,node_data> nodes;
+	private int NumofEdges;
+	private int ModeCount;
+	
+	public Graph_DS() {
+		nodes=new HashMap<Integer,node_data>();
+		NumofEdges=0;
+		ModeCount=0;
+	}
+	public Graph_DS(Graph_DS g) {
+		//nodes=new HashMap<Integer,node_data>();
+		//for (node_data i : g.getV())
+		//{
+		//	nodes.put(i.getKey(), i);
+		//}
+		NumofEdges=g.edgeSize();
+		ModeCount=g.getMC();
+		
+	}
+	
+	public node_data getNode(int key) {
+		if(!nodes.containsKey(key)) { /////////////added need to check
+			return null;
+		}
+		else {
+			return nodes.get(key);
+		}			
+	}
+	
+	public boolean hasEdge(int node1, int node2) {
+		return nodes.get(node1).hasNi(node2);	
+	}
+	
+	public void addNode(node_data n) {
+		nodes.put(n.getKey(), n);
+		ModeCount++;
+	}
+
+	public void connect(int node1, int node2) {
+		if(!hasEdge(node1,node2) && (node1!=node2)) {
+				nodes.get(node1).addNi(nodes.get(node2));
+				nodes.get(node2).addNi(nodes.get(node1));
+				NumofEdges++;
+				ModeCount++;
+		}
+	}
+	
+	public Collection<node_data> getV(){
+		 return nodes.values();
+	}
+	
+	public Collection<node_data> getV(int node_id){
+		return nodes.get(node_id).getNi();
+	}
+	
+	public node_data removeNode(int key) {
+		if(getNode(key)!=null) {
+			for(node_data i : getV(key)){
+					i.removeNode(nodes.get(key));
+					NumofEdges--;
+					ModeCount++;
+			}
+			node_data n=nodes.get(key);
+			nodes.remove(key);
+			return n;
+		}
+		else
+			return null;
+		
+	}
+	
+	public void removeEdge(int node1, int node2) {
+		if(hasEdge(node1,node2)) {
+	        	nodes.get(node1).removeNode(nodes.get(node2));
+	        	nodes.get(node2).removeNode(nodes.get(node1));
+	        	NumofEdges--;
+	        	ModeCount++;
+		}
+	}
+	
+	public int nodeSize() {
+		return nodes.size();
+	}
+	
+	public int edgeSize() {
+		return NumofEdges;
+	}
+
+	public int getMC() {
+		return ModeCount;
+	}
+
+}

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<qualifiedTypeNameHistroy>
+    <fullyQualifiedTypeName name="ex1.WGraph_DS"/>
+    <fullyQualifiedTypeName name="ex1.node_info"/>
+    <fullyQualifiedTypeName name="ex1.WGraph_Algo"/>
+    <fullyQualifiedTypeName name="ex1.src.weighted_graph"/>
+    <fullyQualifiedTypeName name="ex1.src.WGraph_DS"/>
+    <fullyQualifiedTypeName name="ex1.src.node_info"/>
+    <fullyQualifiedTypeName name="java.io.File"/>
+</qualifiedTypeNameHistroy>

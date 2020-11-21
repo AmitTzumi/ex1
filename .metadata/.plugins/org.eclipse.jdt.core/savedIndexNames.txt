@@ -1,0 +1,17 @@
+INDEX VERSION 1.131+C:\Users\Amitt\Desktop\MyQueue - Copy\.metadata\.plugins\org.eclipse.jdt.core
+841523782.index
+1341396620.index
+792271223.index
+3474893428.index
+3390987057.index
+1248545562.index
+531962722.index
+3615705344.index
+2247388016.index
+2236829582.index
+1932529129.index
+120996548.index
+2844650642.index
+5943002.index
+1488688393.index
+2859911638.index

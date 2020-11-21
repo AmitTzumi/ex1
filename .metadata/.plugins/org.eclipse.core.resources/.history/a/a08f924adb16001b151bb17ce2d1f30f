@@ -1,0 +1,11 @@
+package Ex0;
+
+public class Example1 {
+
+	public static void main(String[] args) {
+		System.out.println("hey");
+NodeData n=new NodeData();
+System.out.println(n.getKey());
+	}
+
+}

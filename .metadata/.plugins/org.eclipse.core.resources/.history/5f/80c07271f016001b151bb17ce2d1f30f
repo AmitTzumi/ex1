@@ -1,0 +1,17 @@
+package Ex0;
+
+public class Example1 {
+
+	public static void main(String[] args) {
+		System.out.println("hey");
+NodeData n=new NodeData();
+NodeData t=new NodeData();
+NodeData s=new NodeData();
+n.addNi(t);
+n.addNi(s);
+for(node_data i : n.getNi())
+System.out.println(i.getKey());
+System.out.println("great");
+	}
+
+}

@@ -1,0 +1,110 @@
+package Ex0;
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Queue;
+
+public class Graph_Algo implements graph_algorithms {
+
+	private graph g_alg;
+	private int[] d;
+	private node_data[] p;
+	private int nil=-1;
+	
+	public Graph_Algo(graph g) {
+		//g_alg=new Graph_DS((Graph_DS)g); why u write this one?
+		g_alg = g;
+	}
+	
+	public void init(graph g) {
+		g_alg = g;
+	}
+	
+	public graph copy() {
+		graph g  = new Graph_DS();
+		HashMap<Integer,Integer> keymap = new HashMap<Integer,Integer>();
+		for (node_data i : g_alg.getV()) {
+			node_data n = new NodeData();
+			keymap.put(i.getKey(),n.getKey());
+			g.addNode(n);
+		}
+		for (node_data i : g_alg.getV()) {
+			int key = i.getKey(); 
+			for (node_data j : g_alg.getV(key)) {
+				g.connect(keymap.get(key), keymap.get(j.getKey()));
+			}
+		}
+		return g;
+	}
+	public void BFS(node_data s) { // new function BFS - breadth first search
+		int nil=-1;
+		int d[]= new int[g_alg.nodeSize()];
+		node_data p[]= new node_data[g_alg.nodeSize()];
+		Queue<node_data> q = new LinkedList<>();
+		for(node_data n : g_alg.getV() ) { // all the vertex of the graph
+			n.setTag(0); // white
+			d[n.getKey()]=nil; // initialize the array to -1 at all
+			p[n.getKey()]=null; // initialize the array
+		}
+		s.setTag(1); // gray
+		d[s.getKey()]=0; // no distance from himself
+		p[s.getKey()]=null; // has no father
+		q.clear();
+		q.add(s); // how to get s value?
+		while(!q.isEmpty()) { // the queue is isn't empty
+			node_data u= q.remove(); // take and remove the first node in the queue
+			for(node_data v : u.getNi()) { // all the neighbors of u
+				if(v.getTag()==0) { // if v is white
+					v.setTag(1); // turn him to gray
+					d[v.getKey()]=d[u.getKey()]+1; // calculate the distance
+					p[v.getKey()]=u; // update the father's array
+					q.add(v); // add v to the queue
+				}
+			}
+			u.setTag(2); // turn u to black
+		}
+
+	}
+
+	public boolean isConnected() {
+
+		if (g_alg.getV() == null)
+			BFS(g_alg.getV().iterator().next());
+		else 
+			return false;
+		for(int i=0; i<g_alg.nodeSize();i++) {
+			if(d[i]==nil) {
+				return false;
+			}	
+		}
+	return true;
+}
+	
+	public int shortestPathDist(int src, int dest) {
+		BFS(g_alg.getNode(src));
+		if(d[dest]!=nil) {
+			return d[dest];
+		}
+		else {
+			return 0; // should i return nil? if yes i do not need the if, i just write return d[dest];
+		}
+		
+		
+	}																						
+	
+	public List<node_data> shortestPath(int src, int dest) {
+		BFS(g_alg.getNode(src));
+		node_data s= g_alg.getNode(dest);
+		List<node_data> list=new ArrayList<>();
+		while(s!=null) {
+			list.add(s);
+			s=p[s.getKey()];	
+		}
+		Collections.reverse(list);
+		return list;
+	}
+}
+
